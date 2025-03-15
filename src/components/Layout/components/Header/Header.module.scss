@@ -1,0 +1,222 @@
+.wrapper{
+    width: 100%;
+    height: var(--default-layout-header-height,77px);
+    box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
+    box-sizing: border-box;
+    padding: 8px 0;
+    background-color: var(--primary);
+    color: var(--text-light-color);
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+
+.inner{
+    display: flex;
+    align-items: center;
+    padding: 0 var(--default-layout-horizontal-spacer);
+    justify-content: space-between;
+    height: 100%;
+    width: var(--default-layout-header-width,1150px);
+}
+
+.logo{
+    img {
+        max-width: 100px;
+        height: auto;
+    }
+}
+
+//Menu
+.site-menu{
+    flex:1;
+    padding: 10px;
+}
+
+.site-menu-items{
+    display: flex; 
+}
+
+.menu-item {
+    a {
+      color: var(--text-light-color);
+      font-weight: 100;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 10px 20px 10px 10px; 
+      transition: color 0.3s ease;
+    }
+    &:hover {
+        color: var(--hover-color);
+    }
+    &:hover .dropdown-icon{
+        color: var(--hover-color);
+    }  
+    .dropdown-icon {
+        margin-left: 7px;
+        font-size: 10px;
+        color: var(--text-light-color);
+    }
+}
+
+//Tippy
+.dropdown-menu {
+    background-color: #222;
+    padding: 7px 0px;
+    font-weight: 300;
+    line-height: 1.5;
+    min-width: 200px;
+    position: relative;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    li{
+        a{
+            text-transform: none;
+            font-size: 1.6rem;
+            font-weight: 300;
+            color: var(--text-light-color);
+            display: block;
+
+            &:hover {
+                background-color: #fff;
+                color: var(--text-dark-color);
+            }
+        }
+        
+    // Chỉ áp dụng cho mục con đầu tiên
+    &:first-child {
+        ::before {
+          content: '';
+          position: absolute;
+          top: 0; 
+          left: 0;
+          right: 0;
+          height: 2px; 
+          background-color: var(--hover-color);
+        }
+      }
+    }
+}
+
+.columns-5 {
+    column-count: 5;
+    width: 100vw;
+    min-width: 100%;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.category-item {
+    margin-bottom: 10px;
+    padding: 1rem;
+    .category-title {
+      font-size: 1.8rem;
+      font-weight: 500; 
+      color: var(--text-light-color);
+      padding: 7px 20px;
+      display: block;
+
+      &:hover {
+        background-color: #fff;
+        color: var(--text-dark-color);
+      }
+    }
+}
+
+//Icon
+.action{
+    display: flex;
+    align-items: center; 
+}
+
+.action-btn{
+    display: block;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    color: #868995;
+    background-color: transparent;
+    position: relative;
+
+    &:hover{
+        color: var(--white);
+    }
+}
+
+//Search box
+.search-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: var(--default-layout-header-height,77px);
+    background-color: #f1f1f1;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 1000;
+    transition: opacity 0.5s ease;
+}
+  
+.search-input {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    font-size: 1.8rem;
+    background-color: #fff;
+}
+
+.search-close {
+    background: none;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+    color: #666;
+  
+    &:hover {
+      color: #000;
+    }
+}
+
+//User menu
+.user-dropdown-item{
+    padding: 10px 20px;
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--text-light-color);
+    display: block;
+    text-transform: none;
+
+    &.user-header{
+        color: var(--hover-color);
+    }
+
+    &:hover {
+        background-color: #fff;
+        color: var(--text-dark-color);
+    }
+}
+
+.badge {
+    position: absolute; 
+    top: 0px;
+    right: 16px;
+    padding: 2px 4px; 
+    height: 1.5rem; 
+    width: 1.5rem;
+    line-height: 1.3rem; 
+    border-radius: 50%;
+    font-size: 0.9rem; 
+    font-weight: 300; 
+    color: var(--text-light-color); 
+    background-color: var(--hover-color); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}

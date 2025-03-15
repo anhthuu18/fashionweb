@@ -1,0 +1,64 @@
+@import 'normalize.css';
+
+:root{
+    --primary: #343a40;
+    --black: #000;
+    --white: #fff;
+    --text-dark-color: #000;
+    --text-light-color: #f9f9f9;
+    --hover-color: #ee4266;
+
+    //DefaultLayout
+    --default-layout-header-width: 1520px;
+    --default-layout-header-height: 77px;
+    --default-layout-horizontal-spacer: 210px;
+}
+
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-family: "Mulish", "Raleway", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1.4rem;
+    line-height: 1.5;
+    font-weight: 300;
+    color: var(--text-dark-color);
+}
+
+
+button, input, [tabindex]{
+    outline: none;
+    border: none;
+}
+
+a[href]{
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+ul{
+    list-style: none;
+}
+
+//responsive
+@media (max-width: 1200px) {
+    .columns-5 {
+      flex-direction: column;
+    }
+  
+    .category-item {
+      flex: 1 0 100%; // Mỗi cột chiếm 100% trên màn hình nhỏ
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .category-item {
+      padding: 0.5rem;
+    }
+  }
