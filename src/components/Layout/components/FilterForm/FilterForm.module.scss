@@ -1,0 +1,119 @@
+.wrapper{
+    padding-left: var(--default-layout-padding-left, 60px);
+}
+.filter-input {
+    width: var(--default-layout-min-width, 1360px);
+    padding: 1.4rem;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    background-color: #fff;
+    color: #aaa;
+    font-size: 1.6rem;
+    font-weight: 400;
+    box-sizing: border-box;
+
+    &:focus {
+        border: 2px solid #000;
+    }
+}
+
+.clear-filter {
+    display: block;
+    width: 100%;
+    max-width: var(--default-layout-min-width, 1360px);
+    padding: 1rem 1.6rem;
+    background-color: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: var(--hover-color);
+    }
+}
+
+.filter-menu {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    padding: 1rem;
+    margin-top: -1rem;
+    max-height: 300px;
+    min-width: var(--default-layout-min-width, 1360px);
+    overflow-y: auto;
+    display: flex;
+    gap: 20px;
+}
+
+.category-group {
+    flex: 1;
+    margin-bottom: 1rem;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.category-title {
+    display: block;
+    font-weight: bold;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.category-list {
+    padding: 0;
+    margin: 0;
+}
+
+.category-item {
+    display: flex;
+    align-items: center;
+
+    label {
+        margin: 1px 0;
+        display: flex;
+        align-items: center;
+        font-size: 1.4rem;
+        color: #333;
+    }
+
+    input[type='checkbox'] {
+        margin-right: 0.5rem;
+    }
+}
+
+.filter-input-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: var(--default-layout-min-width, 1360px);
+}
+
+.caret-icon {
+    position: absolute;
+    right: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    font-size: 1.5rem;
+    pointer-events: none;
+}
+
+//responsive
+@media (max-width: 768px) {
+    .filter-input {
+        max-width: 100%;
+    }
+
+    .filter-menu {
+        width: 100%;
+        max-height: 200px;
+    }
+}

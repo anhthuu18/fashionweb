@@ -73,14 +73,14 @@ function Header() {
     ];
 
     const shirtItems = [
-        'Áo thun dáng vừa tay ngắn',
-        'Áo thun dáng rộng tay ngắn',
-        'Áo thun phối màu tay ngắn',
-        'Áo thun Sweater',
-        'Áo thun thể thao',
-        'Áo thun Ba Lỗ (Tank Top)',
-        'Áo thun tay dài',
-        'Áo thun dáng ôm',
+        'Áo Thun Dáng Vừa Tay Ngắn',
+        'Áo Thun Dáng Rộng Tay Ngắn',
+        'Áo Thun Phối Màu Tay Ngắn',
+        'Áo Thun Sweater',
+        'Áo Thun Thể Thao',
+        'Áo Thun Ba Lỗ (Tank Top)',
+        'Áo Thun Tay Dài',
+        'Áo Thun Dáng Ôm',
     ];
 
     const menuCategories = [
@@ -204,113 +204,115 @@ function Header() {
     ]
 
     return (
-        <header className={cx('wrapper')}>
-            <div className={cx('inner')}>
-                <div className={cx('logo')}><img src={images.logo} alt="Yame" /></div>
-                <nav className={cx('site-menu')}>
-                    <ul className={cx('site-menu-items')}>
+        <div>
+            <header className={cx('wrapper')}>
+                <div className={cx('inner')}>
+                    <div className={cx('logo')}><img src={images.logo} alt="Yame" /></div>
+                    <nav className={cx('site-menu')}>
+                        <ul className={cx('site-menu-items')}>
 
-                        <li className={cx('menu-item')}>
-                            <CollectionDropdown collectionItems={collectionItems} />
-                        </li>
+                            <li className={cx('menu-item')}>
+                                <CollectionDropdown collectionItems={collectionItems} />
+                            </li>
 
-                        <li className={cx('menu-item')}>
-                            <PromotionDropdown promotionItems={promotionItems} />
-                        </li>
+                            <li className={cx('menu-item')}>
+                                <PromotionDropdown promotionItems={promotionItems} />
+                            </li>
 
-                        <li className={cx('menu-item')}>
-                            <a href="/hang-moi-ban">Mới</a>
-                        </li>
+                            <li className={cx('menu-item')}>
+                                <a href="/hang-moi-ban">Mới</a>
+                            </li>
 
-                        <li className={cx('menu-item')}>
-                            <ShirtDropdown shirtItems={shirtItems} />
-                        </li>
+                            <li className={cx('menu-item')}>
+                                <ShirtDropdown shirtItems={shirtItems} />
+                            </li>
 
-                        <li className={cx('menu-item')}>
-                            <MenuDropdown menuCategories={menuCategories} />
-                        </li>
+                            <li className={cx('menu-item')}>
+                                <MenuDropdown menuCategories={menuCategories} />
+                            </li>
 
-                    </ul>
-                </nav>
+                        </ul>
+                    </nav>
 
-                <div className={cx('action')}>
-                    <div className={cx('search')}>
-                        <div className={cx('action-btn')} onClick={toggleSearch}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    <div className={cx('action')}>
+                        <div className={cx('search')}>
+                            <div className={cx('action-btn')} onClick={toggleSearch}>
+                                <FontAwesomeIcon icon={faMagnifyingGlass} />
+                            </div>
+                            {isSearchOpen && (<div className={cx('search-box')}>
+                                <input
+                                    type='text'
+                                    placeholder='Nhập sản phẩm cần tìm'
+                                    className={cx('search-input')}
+                                    onBlur={closeSearch}
+                                    autoFocus
+                                />
+                                <button className={cx('search-close')} onClick={closeSearch}>
+                                    <FontAwesomeIcon icon={faClose} />
+                                </button>
+                            </div>
+                            )}
                         </div>
-                        {isSearchOpen && (<div className={cx('search-box')}>
-                            <input
-                                type='text'
-                                placeholder='Nhập sản phẩm cần tìm'
-                                className={cx('search-input')}
-                                onBlur={closeSearch}
-                                autoFocus
-                            />
-                            <button className={cx('search-close')} onClick={closeSearch}>
-                                <FontAwesomeIcon icon={faClose} />
-                            </button>
+
+                        <div className={cx('action-btn')} onClick={goToBlog}>
+                            <FontAwesomeIcon icon={faPager} />
                         </div>
+
+                        {currentUser ? (
+                            <>
+                                <Tippy
+                                    content={
+                                        <ul className={cx('dropdown-menu')}>
+                                            {userMenuItem.map((item, index) => (
+                                                <li
+                                                    key={index}
+                                                    className={cx("user-dropdown-item", { "user-header": item.isHeader })}
+                                                >
+                                                    {item.path ? (
+                                                        <a href={item.path} onClick={() => navigate(item.path)}>
+                                                            {item.title}
+                                                        </a>
+                                                    ) : (
+                                                        <span>{item.title}</span>
+                                                    )}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    }
+                                    interactive
+                                    delay={[0, 200]}
+                                    placement="bottom-end"
+                                    zIndex={1000}
+                                >
+                                    <div className={cx("action-btn")}>
+                                        <FontAwesomeIcon icon={faUser} />
+                                        <span className={cx('badge')}>-5%</span>
+                                    </div>
+                                </Tippy>
+                                <div className={cx('action')}>
+                                    <div className={cx('action-btn')} onClick={goToMyCard}>
+                                        <FontAwesomeIcon icon={faMoneyCheck} />
+                                    </div>
+                                    <div className={cx('action-btn')} onClick={goToCart}>
+                                        <FontAwesomeIcon icon={faBagShopping} />
+                                        <span className={cx('badge')}>0</span>
+                                    </div>
+                                </div>
+                            </>
+                        ) : (
+                            <div className={cx('action')}>
+                                <div className={cx("action-btn")} onClick={goToLogin}>
+                                    <FontAwesomeIcon icon={faUser} />
+                                </div>
+                                <div className={cx('action-btn')} onClick={goToLogin}>
+                                    <FontAwesomeIcon icon={faBagShopping} />
+                                </div>
+                            </div>
                         )}
                     </div>
-
-                    <div className={cx('action-btn')} onClick={goToBlog}>
-                        <FontAwesomeIcon icon={faPager} />
-                    </div>
-
-                    {currentUser ? (
-                        <>
-                            <Tippy
-                                content={
-                                    <ul className={cx('dropdown-menu')}>
-                                        {userMenuItem.map((item, index) => (
-                                            <li
-                                                key={index}
-                                                className={cx("user-dropdown-item", { "user-header": item.isHeader })}
-                                            >
-                                                {item.path ? (
-                                                    <a href={item.path} onClick={() => navigate(item.path)}>
-                                                        {item.title}
-                                                    </a>
-                                                ) : (
-                                                    <span>{item.title}</span>
-                                                )}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                }
-                                interactive
-                                delay={[0, 200]}
-                                placement="bottom-end"
-                                zIndex={1000}
-                            >
-                                <div className={cx("action-btn")}>
-                                    <FontAwesomeIcon icon={faUser} />
-                                    <span className={cx('badge')}>-5%</span>
-                                </div>
-                            </Tippy>
-                            <div className={cx('action')}>
-                                <div className={cx('action-btn')} onClick={goToMyCard}>
-                                    <FontAwesomeIcon icon={faMoneyCheck} />
-                                </div>
-                                <div className={cx('action-btn')} onClick={goToCart}>
-                                    <FontAwesomeIcon icon={faBagShopping} />
-                                    <span className={cx('badge')}>0</span>
-                                </div>
-                            </div>
-                        </>
-                    ) : (
-                        <div className={cx('action')}>
-                            <div className={cx("action-btn")} onClick={goToLogin}>
-                                <FontAwesomeIcon icon={faUser} />
-                            </div>
-                            <div className={cx('action-btn')} onClick={goToLogin}>
-                                <FontAwesomeIcon icon={faBagShopping} />
-                            </div>
-                        </div>
-                    )}
                 </div>
-            </div>
-        </header>
+            </header>
+        </div>
     );
 }
 
