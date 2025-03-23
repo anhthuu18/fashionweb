@@ -1,4 +1,8 @@
+.wrapper{
+  padding-left: var(--default-layout-padding-left, 60px);
+}
 .breadcrumb {
+  width: var(--default-layout-min-width, 1360px);
   display: flex;
   align-items: center;
   border-radius: 0;

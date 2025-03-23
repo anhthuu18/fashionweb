@@ -20,7 +20,7 @@
     --default-layout-padding-left: 60px;
     --default-layout-padding-right: 60px;
 
-    --default-layout-footer-width: 1520px;
+    --default-layout-footer-width: 1110px;
     --default-layout-footer-height: 460px;
 }
 
@@ -40,8 +40,80 @@ body{
     font-weight: 300;
     color: var(--text-dark-color);
     background-color: var(--body-background);
+    overflow-x: hidden; //tránh thanh cuộn ngang
 }
 
+/* Grid System */
+.grid {
+  width: 1370px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.grid__full-width {
+  width: 100%;
+}
+
+.grid__row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -5px;
+  margin-right: -5px;
+}
+
+.grid__column-2 {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 16.6667%;
+}
+
+.grid__column-2-4 {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 20%;
+}
+
+.grid__column-3 {
+  padding: 0 15px;
+  padding-left: 0px;
+  width: 25%; /* 3/12 = 25%, cho 4 cột */
+}
+
+.grid__column-6 {
+  padding: 0 15px;
+  padding-left: 0px;
+  width: 50%; /* 6/12 = 50%, cho 2 cột */
+}
+
+.grid__column-10 {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 83.3334%;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .grid {
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .grid__column-2-4 {
+    width: 33.3333%; /* 3 cột trên tablet */
+  }
+}
+
+@media (max-width: 768px) {
+  .grid__column-2-4 {
+    width: 50%; /* 2 cột trên mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .grid__column-2-4 {
+    width: 100%; /* 1 cột trên mobile nhỏ */
+  }
+}
 
 button, input, [tabindex]{
     outline: none;
@@ -56,20 +128,3 @@ a[href]{
 ul{
     list-style: none;
 }
-
-//responsive
-@media (max-width: 1200px) {
-    .columns-5 {
-      flex-direction: column;
-    }
-  
-    .category-item {
-      flex: 1 0 100%; // Mỗi cột chiếm 100% trên màn hình nhỏ
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .category-item {
-      padding: 0.5rem;
-    }
-  }

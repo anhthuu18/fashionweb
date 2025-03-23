@@ -15,24 +15,26 @@ function Breadcrumb() {
 
   const paths = location.pathname.split('/').filter(p => p);
   // Format tên đường dẫn
-  const formattedPaths = paths.map(p => 
+  const formattedPaths = paths.map(p =>
     p.replace(/-/g, ' ')
-     .split(' ')
-     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-     .join(' ')
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ')
   );
 
   return (
-    <div className={cx('breadcrumb')}>
-      <Link to="/">      
-        <FontAwesomeIcon icon={faHouseChimney} className={cx('home-icon')}/>
-      </Link>
-      {paths.length > 0 && formattedPaths.map((p, index) => (
-        <span key={index} className={cx('path')}>
-          {' / '}
-          <span>{p}</span>
-        </span>
-      ))}
+    <div className={cx('wrapper')}>
+      <div className={cx('breadcrumb')}>
+        <Link to="/">
+          <FontAwesomeIcon icon={faHouseChimney} className={cx('home-icon')} />
+        </Link>
+        {paths.length > 0 && formattedPaths.map((p, index) => (
+          <span key={index} className={cx('path')}>
+            {' / '}
+            <span>{p}</span>
+          </span>
+        ))}
+      </div>
     </div>
   );
 }

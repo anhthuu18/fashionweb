@@ -1,6 +1,10 @@
+import ProductList from "~/components/Layout/components/ProductList";
+
 function Home() {
     return (
-        <h2>Home page</h2>
+        <div>
+            <ProductList/>
+        </div>
     )
 }
 
