@@ -1,7 +1,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  min-height: 100vh;
   min-width: var(--default-layout-min-width, 1360px);
   margin-top: var(--default-layout-header-height, 77px);
 }

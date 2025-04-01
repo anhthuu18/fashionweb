@@ -1,6 +1,8 @@
-.wrapper{
-    padding-left: var(--default-layout-padding-left, 60px);
+.inner{
+    max-width: 1400px;
+    margin: 0 auto;
 }
+
 .filter-input {
     width: var(--default-layout-min-width, 1360px);
     padding: 1.4rem;

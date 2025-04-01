@@ -1,0 +1,22 @@
+.wrapper {
+    --header-only-padding-left: 60px;
+    --header-only-padding-right: 60px;
+    --header-only-min-width: 1360px;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-width: var(--header-only-min-width, 1360px);
+    margin-top: var(--default-layout-header-height, 77px);
+}
+
+.content {
+    flex: 1;
+}
+
+.container {
+    flex: 1;
+    padding-left: var( --header-only-padding-left, 60px);
+    padding-right: var( --header-only-padding-right, 60px);
+    width: 100%;
+}

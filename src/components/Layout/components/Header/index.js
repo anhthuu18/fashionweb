@@ -175,31 +175,32 @@ function Header() {
     const userMenuItem = [
         {
             title: "Trương Thị Anh Thư (-5%)",
-            isHeader: true
+            isHeader: true,
+            path: "/myaccount",
         },
         {
             title: "Mã thẻ & Xếp hạng VIP",
-            path: "/profile/vip"
+            path: "/mycard"
         },
         {
-            title: "Đơn hàng của tui",
-            path: "/profile/orders"
+            title: "Đơn hàng của tôi",
+            path: "/myorders"
         },
         {
             title: "Sản phẩm đã xem",
-            path: "/profile/viewed"
+            path: "/myviewed"
         },
         {
             title: "Sản phẩm Yêu thích/Đã lưu",
-            path: "/profile/favorites"
+            path: "/myfavorites"
         },
         {
             title: "Quyền lợi V.I.P",
-            path: "/profile/vip-benefits"
+            path: "/vip-benefits"
         },
         {
             title: "Ví Voucher",
-            path: "/profile/vouchers"
+            path: "/vouchers"
         },
     ]
 

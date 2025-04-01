@@ -1,6 +1,8 @@
-.wrapper{
-  padding-left: var(--default-layout-padding-left, 60px);
+.inner{
+  max-width: 1360px;
+  margin: 0 auto;
 }
+
 .breadcrumb {
   width: var(--default-layout-min-width, 1360px);
   display: flex;

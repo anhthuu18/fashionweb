@@ -24,16 +24,18 @@ function Breadcrumb() {
 
   return (
     <div className={cx('wrapper')}>
-      <div className={cx('breadcrumb')}>
-        <Link to="/">
-          <FontAwesomeIcon icon={faHouseChimney} className={cx('home-icon')} />
-        </Link>
-        {paths.length > 0 && formattedPaths.map((p, index) => (
-          <span key={index} className={cx('path')}>
-            {' / '}
-            <span>{p}</span>
-          </span>
-        ))}
+      <div className={cx('inner')}>
+        <div className={cx('breadcrumb')}>
+          <Link to="/">
+            <FontAwesomeIcon icon={faHouseChimney} className={cx('home-icon')} />
+          </Link>
+          {paths.length > 0 && formattedPaths.map((p, index) => (
+            <span key={index} className={cx('path')}>
+              {' / '}
+              <span>{p}</span>
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -1,8 +1,12 @@
+.inner{
+    max-width: 1360px;
+    margin: 0 auto;
+  }
+
 .category-breadcrumb {
     display: flex;
     align-items: center;
     border-radius: 0;
-    padding: 0.25rem 1rem;
     margin-bottom: 0.5rem;
     color:  rgb(69, 74, 76);
   }

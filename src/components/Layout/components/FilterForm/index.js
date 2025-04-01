@@ -90,6 +90,7 @@ function FilterForm({ onFilter }) {
 
   return (
     <div className={cx('wrapper')}>
+      <div className={cx('inner')}>
       <TippyHeadless
         visible={isOpen}
         onClickOutside={() => setIsOpen(false)}
@@ -140,6 +141,7 @@ function FilterForm({ onFilter }) {
           )}
         </div>
       </TippyHeadless>
+      </div>
     </div>
   );
 }
