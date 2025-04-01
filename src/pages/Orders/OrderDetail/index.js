@@ -68,7 +68,7 @@ function OrderDetail() {
                                 </tr>
                             </table>
                         </div>
-                        
+
                         <div className={cx('order-products')}>
                             <h2>Chi tiết đơn hàng</h2>
                             {order.products.map((product, index) => (
@@ -91,7 +91,7 @@ function OrderDetail() {
                             <table>
                                 <tr>
                                     <td>Tổng giá trị sản phẩm:</td>
-                                    <td>{order.invoice.subtotal}</td>
+                                    <td>{formatCurrency(order.invoice.subtotal)}</td>
                                 </tr>
                                 <tr>
                                     <td>Giảm giá:</td>
@@ -99,19 +99,19 @@ function OrderDetail() {
                                 </tr>
                                 <tr>
                                     <td>Phí vận chuyển:</td>
-                                    <td>{order.invoice.shippingFee}</td>
+                                    <td>{formatCurrency(order.invoice.shippingFee)}</td>
                                 </tr>
                                 <tr>
                                     <td>Tổng hóa đơn:</td>
-                                    <td>{order.invoice.total}</td>
+                                    <td>{formatCurrency(order.invoice.total)}</td>
                                 </tr>
                                 <tr>
                                     <td>Đã thanh toán:</td>
-                                    <td>{order.invoice.paid}</td>
+                                    <td>{formatCurrency(order.invoice.paid)}</td>
                                 </tr>
                                 <tr>
                                     <td>Phải trả:</td>
-                                    <td>{order.invoice.remaining}</td>
+                                    <td>{formatCurrency(order.invoice.remaining)}</td>
                                 </tr>
                             </table>
                         </div>
