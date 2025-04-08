@@ -1,33 +1,41 @@
+// src/components/Layout/components/Header/CollectionDropdown.js
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 import Tippy from "@tippyjs/react";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import products from "~/components/Layout/components/Products/DataProducts";
 
 const cx = classNames.bind(styles);
-function CollectionDropdown({collectionItems}) {
-    return ( 
+
+// Lấy danh sách các bộ sưu tập duy nhất từ products
+const collectionItems = [...new Set(products.map(product => product.collection))];
+
+function CollectionDropdown() {
+    return (
         <Tippy
-        content={
-            <ul className={cx('dropdown-menu')}>
-                {collectionItems.map((item, index) => (
-                    <li key={index}>
-                        <a href="#">{item}</a>
-                    </li>
-                ))}
-            </ul>
-        }
-        interactive
-        duration={[300, 100]}
-        placement='bottom-start'
-        trigger="mouseenter"
-    >
-        <a href="/bo-suu-tap">Bộ sưu tập
-            <FontAwesomeIcon icon={faChevronDown} className={cx('dropdown-icon')} />
-        </a>
-    </Tippy>
-     );
+            content={
+                <ul className={cx("dropdown-menu")}>
+                    {collectionItems.map((item, index) => (
+                        <li key={index}>
+                            <a href={`/bo-suu-tap/${item.toLowerCase().replace(/\s+/g, "-")}`}>
+                                {item}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            }
+            interactive
+            duration={[300, 100]}
+            placement="bottom-start"
+            trigger="mouseenter"
+        >
+            <a href="/bo-suu-tap">
+                Bộ sưu tập
+                <FontAwesomeIcon icon={faChevronDown} className={cx("dropdown-icon")} />
+            </a>
+        </Tippy>
+    );
 }
 
 export default CollectionDropdown;

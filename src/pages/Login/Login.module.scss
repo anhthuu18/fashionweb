@@ -1,0 +1,105 @@
+    .wrapper {
+        --text-color: #454a4c;
+
+        max-width: 1360px;
+        margin: 0 auto;
+       
+    }
+
+    .inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .form-login {
+        width: 600px;
+        .heading {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 500;
+            color: var(--text-color);
+            margin-bottom: 12px;
+        }
+        .forgot-password{
+            font-size: 1.4rem;
+            color: var(--text-color);
+            display: block;
+            text-align: right;
+            margin-bottom: 20px;
+
+            &:hover {
+                text-decoration: underline;
+                color: #bd2130;
+            }
+        }
+    }
+
+    .form-group {
+        color: var(--text-color);
+        padding: 8px 0;
+        font-size: 1.6rem;
+
+        .form-label {
+            display: flex;
+            align-items: center;
+        }
+        .form-icon{
+            font-size: 1.3rem;
+            margin-right: 6px;
+        }    
+        .form-control {
+            font-size: 1.4rem;
+            width: 100%;
+            padding: 14px 24px;
+            border-radius: 4px;
+            border: 1px solid transparent;
+
+            &:focus {
+                outline: none;
+                border: 1px solid var(--text-color);
+            }
+        }
+        .form-message {
+            color:red;
+            font-size: 1.2rem;
+        }
+    }
+
+    .form-submit {
+        width: 50%;
+        display: block;
+        margin: 30px auto;
+        padding: 12px 24px;
+        font-size: 1.5rem;
+        color: #fff;
+        background-color: #343a40;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #454A4C;
+        }
+    }
+
+
+    .form-footer {
+        font-size: 1.4rem;
+        margin-top: 12px;
+        display: flex;
+        justify-content: center;
+        color: var(--text-color);
+        padding-bottom: 60px;
+
+        .footer-text {
+            margin-right: 8px;
+        }
+
+        .footer-link {
+            &:hover {
+                text-decoration: underline;
+                color: #007bff;
+            }
+        }
+    }
