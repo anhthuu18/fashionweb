@@ -1,15 +1,287 @@
-.wrapper{
-    --text-color: #454a4c;
+.wrapper {
+  --text-color: #454a4c;
 
-    max-width: 1360px;
-    margin: 0 auto;
+  max-width: 1360px;
+  margin: 0 auto;
 }
 
-.inner{
-    text-align: center;
-    h2{
-        font-size: 2.8rem;
-        font-weight: 200;
-        color:var(--text-color);
+.inner {
+  max-width: 1360px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+// Has-products
+.inner-has-products {
+  margin-left: 0;
+  display: flex;
+  text-align: left;
+
+  h2 {
+    font-size: 2.4rem;
+    font-weight: 500;
+    color: var(--text-color);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+  }
+}
+
+.cart-info-products {
+  flex: 1;
+  margin-left: -20px;
+
+  .cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+
+    .product-row {
+      .image-col {
+        width: 70px;
+        height: 100px;
+        position: relative;
+        padding-right: 40px;
+        padding-bottom: 20px;
+        vertical-align: top;
+      }
+
+      .details-col {
+        padding: 10px 0;
+        vertical-align: top;
+        padding-bottom: 15px; // Tăng khoảng cách dưới để phân cách giữa các sản phẩm
+      }
     }
+
+    .shipping-fee {
+      font-size: 16px;
+      font-weight: 500;
+
+      .shipping-fee-title {
+        color: var(--text-color);
+        padding-top: 10px;
+      }
+
+      .shipping-fee-price {
+        color: #ff0000;
+        padding-top: 10px;
+      }
+    }
+
+    .total {
+      font-size: 16px;
+      font-weight: 500;
+
+      .total-title {
+        color: var(--text-color);
+        padding-top: 10px;
+        border-top: 1px solid #eee;
+      }
+
+      .total-price {
+        font-weight: bold;
+        color: #ff0000;
+        padding-top: 10px;
+        border-top: 1px solid #eee;
+      }
+    }
+  }
+}
+
+.product-image {
+  width: 70px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.remove-product {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  color: var(--text-color);
+  font-size: 14px;
+  margin-left: 2px;
+  cursor: pointer;
+
+  .remove-icon {
+    margin-right: 4px;
+    font-size: 12px;
+  }
+
+  &:hover {
+    color: #0056b3;
+  }
+}
+
+.product-title {
+  a {
+    color: #444444;
+    font-weight: 100;
+
+    &:hover {
+      color: #0056b3;
+    }
+  }
+}
+
+.product-details {
+  font-weight: 50;
+  font-size: 15px;
+  color: #111111;
+
+  .product-price {
+    margin-right: 5px;
+  }
+
+  .product-discount {
+    color: #ff0000;
+  }
+}
+
+.vip-discount {
+  margin-bottom: 40px;
+  color: #444444;
+  font-weight: 100;
+}
+
+.item-subtotal {
+  font-weight: 100;
+  color: var(--text-color);
+  font-size: 16px;
+  margin: 0; // Đảm bảo không có margin thừa
+}
+
+// Delivery-info
+.delivery-info {
+  margin-right: 6px;
+  flex: 1;
+
+  .delivery-name,
+  .delivery-phone,
+  .delivery-address,
+  .delivery-note {
+    margin-bottom: 20px;
+
+    label {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: var(--text-color);
+      display: block;
+    }
+
+    input,
+    select {
+      width: 100%;
+      height: 40px;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+      color: #333;
+      box-sizing: border-box;
+
+      &:focus {
+        border: 1px solid #ff0000;
+        outline: none;
+      }
+
+      // &::placeholder {
+      //   color: #888;
+      // }
+    }
+
+    select {
+      appearance: none;
+      background-color: transparent;
+    }
+  }
+
+  .delivery-address {
+    input {
+      margin-bottom: 12px;
+    }
+  }
+
+  .delivery-method {
+    margin-bottom: 20px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-color);
+
+    input[type="radio"] {
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    label {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-color);
+    }
+  }
+
+  .payment-methods {
+    margin-bottom: 20px;
+
+    .payment-method {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+
+      input[type="radio"] {
+        margin-right: 8px;
+      }
+
+      label {
+        display: inline-flex;
+        align-items: center;
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--text-color);
+
+        .payment-icon {
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+
+  .action-button {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+
+    &:not(.secondary) {
+      background-color: #00a7b5;
+      color: #fff;
+
+      &:hover {
+        background-color: #008c99;
+      }
+    }
+
+    &.secondary {
+      color: rgb(33, 37, 41);
+      background-color: rgb(255, 193, 7);
+      border-color: rgb(255, 193, 7);
+
+      &:hover {
+        color: rgb(33, 37, 41);
+        background-color: rgb(224, 168, 0);
+        border-color: rgb(211, 158, 0);
+      }
+    }
+  }
 }

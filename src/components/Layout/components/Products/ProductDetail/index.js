@@ -15,8 +15,8 @@ const cx = classNames.bind(styles);
 const ProductDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { addToCart } = useCart(); // Sử dụng addToCart từ CartContext
-    const { currentUser } = useAuth(); // Lấy currentUser từ AuthContext
+    const { addToCart } = useCart();
+    const { currentUser } = useAuth();
     const product = products.find((p) => p.id === parseInt(id));
 
     const [isExpanded, setIsExpanded] = useState(false);
@@ -74,15 +74,24 @@ const ProductDetail = () => {
             return;
         }
 
-        // Thêm sản phẩm vào giỏ hàng
-        addToCart({
-            id: product.id,
-            name: product.title,
-            price: product.price.new,
-            size: sizeOption.size,
-        });
+        // Tính số tiền tiết kiệm
+        const oldPrice = parseFloat(product.price.old.replace('.', ''));
+        const newPrice = parseFloat(product.price.new.replace('.', ''));
+        const discount = oldPrice - newPrice;
 
-        // Hiển thị thông báo thành công
+        // Chuẩn bị dữ liệu sản phẩm để thêm vào giỏ hàng
+        const cartItem = {
+            id: product.id,
+            title: product.title, 
+            price: newPrice, 
+            size: sizeOption.size, 
+            image: product.images[0],
+            discount: discount > 0 ? discount : 0, 
+            vipDiscount: 5, 
+        };
+
+        addToCart(cartItem);
+
         const newToast = {
             id: `${Date.now()}-${toastCounter}`,
             title: 'Cập nhật giỏ hàng thành công!',
@@ -144,7 +153,7 @@ const ProductDetail = () => {
                         </div>
 
                         <div className={cx('info-stock')}>
-                            <table>
+                            <table className={cx('stock-table')}>
                                 <tbody>
                                     {product.sizes.map((sizeOption, index) => (
                                         <tr

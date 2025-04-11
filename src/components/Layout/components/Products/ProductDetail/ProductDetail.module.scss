@@ -2,7 +2,6 @@
     --text-color: #454a4c;
 
     max-width: 1360px;
-    margin: 0 auto;
     display: flex;
     flex-direction: row;
     padding-bottom: 20px;
@@ -66,7 +65,7 @@
 }
 
 //
-table {
+.stock-table {
     color: var(--text-color);
     width: 100%;
     border-collapse: collapse;

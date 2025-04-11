@@ -1,4 +1,3 @@
-// src/components/Layout/components/Header/index.js
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,7 +25,7 @@ const cx = classNames.bind(styles);
 function Header() {
     const [isSearchOpen, setIsSeacrhOpen] = useState(false);
     const navigate = useNavigate();
-    const { currentUser} = useAuth();
+    const { currentUser, logout } = useAuth(); // Thêm logout từ AuthContext
     const { getCartCount } = useCart();
 
     const goToMyCard = () => {
@@ -51,6 +50,11 @@ function Header() {
 
     const goToLogin = () => {
         navigate('/login', { state: { from: 'header' } });
+    };
+
+    const handleLogout = () => {
+        logout();
+        navigate('/login');
     };
 
     const collectionItems = [
@@ -177,7 +181,7 @@ function Header() {
 
     const userMenuItem = [
         {
-            title: 'Trương Thị Anh Thư (-5%)',
+            title: `${currentUser.name || 'Người dùng'} (-5%)`, // Lấy tên từ currentUser
             isHeader: true,
             path: '/myaccount',
         },
@@ -204,7 +208,7 @@ function Header() {
         {
             title: 'Ví Voucher',
             path: '/myvouchers',
-        }
+        },
     ];
 
     return (
@@ -259,7 +263,7 @@ function Header() {
                             <FontAwesomeIcon icon={faPager} />
                         </div>
 
-                        {currentUser ? (
+                        {currentUser.isLoggedIn ? (
                             <>
                                 <Tippy
                                     content={

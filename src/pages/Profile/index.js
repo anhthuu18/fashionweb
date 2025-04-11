@@ -1,8 +1,23 @@
 import classNames from "classnames/bind";
 import styles from './Profile.module.scss';
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "~/components/context/AuthContext";
 
 const cx = classNames.bind(styles);
 function Profile() {
+    const navigate = useNavigate();
+    const {logout} = useAuth();
+
+    const handleLogout = () => {
+        logout();
+        navigate('/login');
+    }
+
+    const handleDelete = () => {
+        logout();
+        navigate('/');
+    }
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -33,8 +48,8 @@ function Profile() {
                         <input type="text" id="phone" value="0382604104"/>
                     </div>
                     <button className={cx('btn', 'update-btn')}>CẬP NHẬT THÔNG TIN</button>
-                    <button className={cx('btn', 'exit-btn')}>THOÁT</button>
-                    <button className={cx('btn', 'delete-btn')}>XÓA TÀI KHOẢN VIP</button>
+                    <button className={cx('btn', 'exit-btn')} onClick={handleLogout}>THOÁT</button>
+                    <button className={cx('btn', 'delete-btn')} onClick={handleDelete}>XÓA TÀI KHOẢN VIP</button>
                 </form>
             </div>
         </div>
