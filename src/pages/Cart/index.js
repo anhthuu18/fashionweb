@@ -3,15 +3,35 @@ import styles from './Cart.module.scss';
 import images from "~/assets/images";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "~/components/context/CartContext";
+import { useAuth } from "~/components/context/AuthContext"; // Thêm useAuth
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGlobe, faTrash, faTruck } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 const cx = classNames.bind(styles);
 
 function Cart() {
     const { cart, removeFromCart } = useCart();
+    const { currentUser, updateUser } = useAuth(); // Lấy currentUser và updateUser từ AuthContext
     const navigate = useNavigate();
 
+    // State để lưu thông tin giao hàng (ban đầu lấy từ currentUser)
+    const [deliveryInfo, setDeliveryInfo] = useState({
+        name: currentUser.name || '',
+        phone: currentUser.phone || '',
+        address: currentUser.address || '',
+        city: currentUser.city || '',
+        note: '',
+    });
+    const [paymentMethod, setPaymentMethod] = useState('COD');
+
+    // Kiểm tra nếu chưa đăng nhập thì chuyển hướng đến trang đăng nhập
+    if (!currentUser.isLoggedIn) {
+        navigate('/login', { state: { from: '/cart' } });
+        return null;
+    }
+
+    // Kiểm tra nếu giỏ hàng rỗng
     if (!cart || cart.length === 0) {
         return (
             <div className={cx('wrapper')}>
@@ -25,6 +45,25 @@ function Cart() {
 
     // Tính tổng tiền
     const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+
+    // Cập nhật thông tin giao hàng khi người dùng thay đổi
+    const handleDeliveryInfoChange = (field, value) => {
+        setDeliveryInfo((prev) => ({
+            ...prev,
+            [field]: value,
+        }));
+
+        // Cập nhật thông tin người dùng trong AuthContext (trừ trường note)
+        if (field !== 'note') {
+            updateUser({ [field]: value });
+        }
+    };
+    const handleGoToCollection = () => {
+        navigate('/bo-suu-tap');
+    };
+    const handlePaymentMethodChange = (method) => {
+        setPaymentMethod(method);
+    };
 
     return (
         <div className={cx('wrapper')}>
@@ -92,19 +131,37 @@ function Cart() {
                     <h2>Người nhận hàng</h2>
                     <div className={cx('delivery-name')}>
                         <label>Tên</label>
-                        <input type="text" placeholder="Trương Thị Anh Thư" />
+                        <input
+                            type="text"
+                            value={deliveryInfo.name}
+                            onChange={(e) => handleDeliveryInfoChange('name', e.target.value)}
+                            placeholder="Trương Thị Anh Thư"
+                        />
                     </div>
                     <div className={cx('delivery-phone')}>
                         <label>Điện thoại liên lạc</label>
-                        <input type="text" placeholder="0362980918" />
+                        <input
+                            type="text"
+                            value={deliveryInfo.phone}
+                            onChange={(e) => handleDeliveryInfoChange('phone', e.target.value)}
+                            placeholder="0362980918"
+                        />
                     </div>
                     <div className={cx('delivery-method')}>
                         <input type="radio" name="delivery-method" defaultChecked />
                         <label>Nhận hàng tại nhà/công ty/bưu điện</label>
                     </div>
                     <div className={cx('delivery-address')}>
-                        <input type="text" placeholder="130 đường số 8, Linh Xuân, Thủ Đức" />
-                        <select>
+                        <input
+                            type="text"
+                            value={deliveryInfo.address}
+                            onChange={(e) => handleDeliveryInfoChange('address', e.target.value)}
+                            placeholder="130 đường số 8, Linh Xuân, Thủ Đức"
+                        />
+                        <select
+                            value={deliveryInfo.city}
+                            onChange={(e) => handleDeliveryInfoChange('city', e.target.value)}
+                        >
                             <option value="">-- Chọn Tỉnh/Thành phố --</option>
                             <option value="HCM">Hồ Chí Minh</option>
                             <option value="HN">Hà Nội</option>
@@ -113,26 +170,49 @@ function Cart() {
                     </div>
                     <div className={cx('delivery-note')}>
                         <label>Ghi chú</label>
-                        <input type="text" placeholder="Ghi chú cho đơn hàng" />
+                        <input
+                            type="text"
+                            value={deliveryInfo.note}
+                            onChange={(e) => handleDeliveryInfoChange('note', e.target.value)}
+                            placeholder="Ghi chú cho đơn hàng"
+                        />
                     </div>
+
                     <div className={cx('payment-methods')}>
                         <div className={cx('payment-method')}>
-                            <input type="radio" name="payment-option" defaultChecked />
+                            <input
+                                type="radio"
+                                name="payment-option"
+                                value="COD"
+                                checked={paymentMethod === 'COD'}
+                                onChange={() => handlePaymentMethodChange('COD')} />
                             <label>
                                 <FontAwesomeIcon icon={faTruck} className={cx('payment-icon')} /> Thanh toán khi nhận hàng (COD)
                             </label>
                         </div>
                         <div className={cx('payment-method')}>
-                            <input type="radio" name="payment-option" />
+                            <input
+                                type="radio"
+                                name="payment-option"
+                                value="MOMO"
+                                checked={paymentMethod === 'MOMO'}
+                                onChange={() => handlePaymentMethodChange('MOMO')} />
                             <label>
                                 <FontAwesomeIcon icon={faGlobe} className={cx('payment-icon')} /> Thanh toán bằng ví MoMo
                             </label>
                         </div>
                     </div>
-                    <button className={cx('action-button')}>
-                        Đặt hàng: Giao hàng và thu tiền tận nơi
-                    </button>
-                    <button className={cx('action-button', 'secondary')}>
+                    {paymentMethod === 'COD' ? (
+                        <button className={cx('action-button')}>
+                            Đặt hàng: Giao hàng và thu tiền tận nơi
+                        </button>
+                    ) : (
+                        <button className={cx('action-button')}>
+                            Thanh toán:  {totalPrice.toLocaleString()} đ
+                        </button>
+                    )}
+
+                    <button className={cx('action-button', 'secondary')} onClick={handleGoToCollection}>
                         Các sản phẩm khác? Chọn thêm...
                     </button>
                 </div>

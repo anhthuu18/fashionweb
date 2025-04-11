@@ -19,6 +19,7 @@ import Voucher from '~/pages/Voucher'
 import VipBenefit from '~/pages/Vip'
 import Register from '~/pages/Login/Register'
 import ForgotPassword from '~/pages/Login/ForgotPassword'
+import TShirts from '~/pages/TShirts'
 
 
 //router k can dang nhap van xem duoc
@@ -39,9 +40,13 @@ const publicRoutes = [
 
     {path:'/blog', component: Blog, layout: DefaultLayout},
     { path: '/bo-suu-tap', component: Collection, layout: DefaultLayout},
+    {path: '/bo-suu-tap/:collection', component: Collection, layout: DefaultLayout},
     { path: '/khuyen-mai-giam-gia', component: Promotion, layout: DefaultLayout },
+    { path: '/khuyen-mai-giam-gia/:promotion', component: Promotion, layout: DefaultLayout },
+    { path: '/ao-thun-nam-nu', component: TShirts, layout: DefaultLayout }, 
+    { path: '/ao-thun-nam-nu/:type', component: TShirts, layout: DefaultLayout },
     { path: '/hang-moi-ban', component: New, layout: DefaultLayout },
-    { path: '/ao-thun-nam-nu', component: New, layout: DefaultLayout },
+    {path: '/hang-moi-ban/:category', component: New, layout: DefaultLayout },
     //{path:'/products', component: Product},
     {path: '/chi-tiet-san-pham/:id', component: Detail, layout: DefaultLayout },
 

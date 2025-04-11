@@ -1,7 +1,7 @@
     // src/pages/auth/Login.js
     import { useState } from 'react';
     import classNames from 'classnames/bind';
-    import { Link } from 'react-router-dom';
+    import { Link, useNavigate } from 'react-router-dom';
     import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
     import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
     import { useAuth } from '~/components/context/AuthContext';
@@ -12,6 +12,7 @@
 
     const Login = () => {
         const { login } = useAuth();
+        const navigate = useNavigate();
         const [formData, setFormData] = useState({
             email: '',
             password: '',
@@ -39,6 +40,7 @@
             if (isValid) {
                 login({ email: formData.email });
                 console.log('Đăng nhập thành công:', formData);
+                navigate('/');
             } else {
                 console.log('Form không hợp lệ');
             }
