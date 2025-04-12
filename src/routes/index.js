@@ -20,6 +20,7 @@ import VipBenefit from '~/pages/Vip'
 import Register from '~/pages/Login/Register'
 import ForgotPassword from '~/pages/Login/ForgotPassword'
 import TShirts from '~/pages/TShirts'
+import CollectionProducts from '~/pages/Collection/CollectionProducts'
 
 
 //router k can dang nhap van xem duoc
@@ -40,7 +41,7 @@ const publicRoutes = [
 
     {path:'/blog', component: Blog, layout: DefaultLayout},
     { path: '/bo-suu-tap', component: Collection, layout: DefaultLayout},
-    {path: '/bo-suu-tap/:collection', component: Collection, layout: DefaultLayout},
+    {path: '/bo-suu-tap/:collection', component: CollectionProducts, layout: DefaultLayout},
     { path: '/khuyen-mai-giam-gia', component: Promotion, layout: DefaultLayout },
     { path: '/khuyen-mai-giam-gia/:promotion', component: Promotion, layout: DefaultLayout },
     { path: '/ao-thun-nam-nu', component: TShirts, layout: DefaultLayout }, 

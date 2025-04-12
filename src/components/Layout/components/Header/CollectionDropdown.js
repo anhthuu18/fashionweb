@@ -1,4 +1,3 @@
-// src/components/Layout/components/Header/CollectionDropdown.js
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 import Tippy from "@tippyjs/react";
@@ -18,7 +17,7 @@ function CollectionDropdown() {
                 <ul className={cx("dropdown-menu")}>
                     {collectionItems.map((item, index) => (
                         <li key={index}>
-                            <a href={`/bo-suu-tap/${item.toLowerCase().replace(/\s+/g, "-")}`}>
+                            <a href={`/bo-suu-tap/${encodeURIComponent(item)}`}>
                                 {item}
                             </a>
                         </li>
